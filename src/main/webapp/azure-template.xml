@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<templates>
+  <template url="cloud/azure_4.xml" section="Azure" libs="azure-diagram-graphics;mscae"/>
+  <template url="cloud/azure_5.xml" section="Azure" libs="azure-diagram-graphics;mscae"/>
+  <template url="cloud/azure_6.xml" section="Azure" libs="azure-diagram-graphics;mscae"/>
+  <template url="cloud/azure_7.xml" section="Azure" libs="azure-diagram-graphics;mscae"/>
+  <template url="cloud/azure_8.xml" section="Azure" libs="azure-diagram-graphics;mscae"/>
+  <template url="cloud/azure_9.xml" section="Azure" libs="azure-diagram-graphics;mscae"/>
+</templates>
