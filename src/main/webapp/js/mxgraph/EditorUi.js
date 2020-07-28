@@ -1024,7 +1024,7 @@ EditorUi.prototype.formatWidth = 240;
 /**
  * Specifies the width of the calculator panel. Default is 240.
  */
-EditorUi.prototype.calcWidth = 480;
+EditorUi.prototype.calcWidth = 540;
 
 /**
  * Specifies the height of the toolbar. Default is 38.
@@ -2530,7 +2530,7 @@ EditorUi.prototype.toggleCalcPanel = function(visible)
 	
 	if (this.calc != null)
 	{
-		this.calcWidth = (visible) ? 480 : 0;
+		this.calcWidth = (visible) ? 540 : 0;
 		this.calcContainer.style.display = (visible) ? '' : 'none';
 		this.refresh();
 		this.calc.refresh();
@@ -3908,7 +3908,7 @@ EditorUi.prototype.openFile = function()
 
 	// Removes openFile if dialog is closed
 	this.showDialog(new OpenDialog(this).container, (Editor.useLocalStorage) ? 640 : 320,
-			(Editor.useLocalStorage) ? 480 : 220, true, true, function()
+			(Editor.useLocalStorage) ? 540 : 220, true, true, function()
 	{
 		window.openFile = null;
 	});
@@ -4190,7 +4190,7 @@ EditorUi.prototype.showDataDialog = function(cell)
 	if (cell != null)
 	{
 		var dlg = new EditDataDialog(this, cell);
-		this.showDialog(dlg.container, 480, 420, true, false, null, false);
+		this.showDialog(dlg.container, 540, 420, true, false, null, false);
 		dlg.init();
 	}
 };

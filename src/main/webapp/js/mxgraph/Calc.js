@@ -702,7 +702,7 @@ BaseCalcPanel.prototype.createPanel = function()
 
 	var div = document.createElement('div');
 	div.className = 'geCalcSection';
-	div.style.padding = '12px 0px 12px 18px';
+	div.style.padding = '0px 0px 0px 0px';
 	
 	return div;
 };
@@ -1885,9 +1885,9 @@ DiagramCalcPanel.prototype.addView = function(div)
 	var link = "https://azure-staging.microsoft.com/en-us/pricing/calculator/?debugScripts=https://localhost:8080/dest&diagramTool=true"
 	var iframe = document.createElement('iframe');
 	iframe.frameBorder=0;
-	iframe.width="98%";
+	iframe.width="100%";
 	offset = ui.getDiagramContainerOffset();
-	iframe.height= (document.getElementsByClassName('geCalcContainer')[0].scrollHeight - 64) + "px";
+	iframe.height= (document.getElementsByClassName('geCalcContainer')[0].scrollHeight - 60) + "px";
 	iframe.id="calculatorFrame";
 	iframe.setAttribute("src", link);
 	div.appendChild(iframe);

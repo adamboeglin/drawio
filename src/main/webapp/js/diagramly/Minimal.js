@@ -175,7 +175,7 @@ EditorUi.initMinimalTheme = function()
 	    if (ui.calcWindow == null)
 	    {
 	        ui.calcWindow = new WrapperWindow(ui, mxResources.get('calc'),
-	           Math.max(20, ui.diagramContainer.clientWidth - 480 - 12), 56,
+	           Math.max(20, ui.diagramContainer.clientWidth - 540 - 12), 56,
 	           240, Math.min(566, graph.container.clientHeight - 10), function(container)
 	        {
 	            var calc = ui.createCalc(container);
@@ -184,7 +184,7 @@ EditorUi.initMinimalTheme = function()
 	            return calc;
 	        });
 	        
-	        ui.calcWindow.window.minimumSize = new mxRectangle(0, 0, 480, 80);
+	        ui.calcWindow.window.minimumSize = new mxRectangle(0, 0, 540, 80);
 	        ui.calcWindow.window.setVisible(true);
 	    }
 	    else
