@@ -47,6 +47,12 @@
 	font-size:12px;
 	border-left:1px solid #dadce0;
 }
+.geCalcContainer {
+	overflow-x:hidden !important;
+	overflow-y:auto !important;
+	font-size:12px;
+	border-left:1px solid #dadce0;
+}
 .geSidebarFooter {
 	border-top:1px solid #dadce0;
 }

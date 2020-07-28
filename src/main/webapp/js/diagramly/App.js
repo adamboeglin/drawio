@@ -1062,6 +1062,17 @@ App.prototype.formatHideImage = (!mxClient.IS_SVG) ? IMAGE_PATH + '/format-hide.
 /**
  *
  */
+App.prototype.calcShowImage = (!mxClient.IS_SVG) ? IMAGE_PATH + '/calc-show.png' : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAMAAADzapwJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMAUExURXJycnx8fIODg4SEhIaGhoeHh4iIiImJiYuLi4yMjI2NjY+Pj5CQkJGRkZKSkpOTk5SUlJWVlZaWlpeXl5iYmJmZmZqampubm5ycnJ2dnZ6enp+fn6CgoKGhoaKioqOjo6SkpKWlpaampqenp6ioqKmpqaqqqqurq6ysrK2tra6urq+vr7CwsLGxsbKysrOzs7S0tLW1tbe3t7i4uLm5ubq6uru7u7y8vL29vb6+vr+/v8DAwMHBwcLCwsPDw8TExMXFxcbGxsfHx8jIyMnJycrKytLS0tXV1dbW1tfX19jY2NnZ2dra2tzc3PPz8/T09PX19fb29vf39/j4+Pn5+fr6+vv7+/z8/P39/f///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKNVx3QAAAAJcEhZcwAAHYUAAB2FAfAbMuwAAAENSURBVChTbdBbU4JAGMbxFxVT7GgaKtFBQQldQWAtjcCOHjLRFIzv/0XagYvdaXpm3pvfxX9nFuJ/l/KeWQIJh3d6t9dDqN83zEFEuVUoCqWj03JFbCDKUYs/KAqHJ+VqTTJCympBKB2fnYuS3LQoh9jGGN+Pxq7nuUwbqao56GiWresO064DVEWAGrkrJkK4ckGYHMORkss1FZ5XlXy+y0QshGzHMPHY99knZYC6BCBNV8EHw4RE0pfmwXrKRNqZjKJms53FesNwOHTwwwgPHz833zOGbwEurwFultvtIvnZlAk1SF/+2u2WlCON45Q2x2nzVTBj2H3yPM+fPL+8vr1Tjvc/dAmk/Gdx/Avro3sGR17JdgAAAABJRU5ErkJggg==';
+
+/**
+ *
+ */
+App.prototype.calcHideImage = (!mxClient.IS_SVG) ? IMAGE_PATH + '/calc-hide.png' : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAMAAADzapwJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMAUExURTk5OTo6Ojs7Ozw8PD09PT4+Pj8/P0BAQFpaWlxcXF1dXV5eXl9fX2BgYGFhYWJiYmNjY2RkZGVlZWZmZmdnZ2pqamtra2xsbG1tbW5ubm9vb3BwcHFxcXJycnNzc3R0dHV1dXZ2dnd3d3h4eHl5eXp6ent7e3x8fH19fX5+fn9/f4CAgIGBgYKCgoODg4SEhIWFhYaGhoeHh4iIiImJiYqKiouLi4yMjI2NjY6Ojo+Pj5CQkJGRkZKSkpOTk5SUlJWVlZaWlpeXl5iYmJmZmZqampubm5ycnJ2dnZ6enp+fn6CgoKGhoaKioqOjo6SkpKWlpaampqenp6mpqaqqqqurq6ysrK2tra6urq+vr7CwsLKysrOzs7S0tLW1tbe3t7i4uLm5ubq6ur29vb6+vsXFxdHR0f///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIcoa0oAAAAJcEhZcwAAHYUAAB2FAfAbMuwAAAEqSURBVChTbczXUsJgFIVRRIpIi6hIT0gISEiRDgKhqERaBLGCIC2H938D//HiMOP4zeybdbFN+3/75YsA6YrkJ/mQb26rlXK5VCwU8rlsCllpLxfz2cfrdKIPigeW2+vvxfzzbToe9fI8sqQuv2bvL896X+soCWRRlMWMcJ3kuTjDcciZkqrmsvWaIler0oGFIcBYBxiRdVnkNOHJE2GyLoOcam42ndZ6rTZXqwqNnFRKRVnK5wSeprkYMq8BDPsAPa/d5osiJ3oAOvnvu2xWbwSZa+x2LXW7rTutFk8YmU1LYioppBOnlmN3CDl+B/D4AHDvMJudQWSG0ID8aydHJkcAma4ZRqthGDWX3eb2I0c5Ns4wdCwaCYeCl8jUuY90RqIoyoP8t/3+B2ggjO5+dUn+AAAAAElFTkSuQmCC';
+
+
+/**
+ *
+ */
 App.prototype.fullscreenImage = (!mxClient.IS_SVG) ? IMAGE_PATH + '/fullscreen.png' : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAABlBMVEUAAAAAAAClZ7nPAAAAAXRSTlMAQObYZgAAABpJREFUCNdjgAAbGxAy4AEh5gNwBBGByoIBAIueBd12TUjqAAAAAElFTkSuQmCC';
 
 /**
@@ -1462,6 +1473,7 @@ App.prototype.init = function()
 		document.body.appendChild(this.bg);
 		this.diagramContainer.style.visibility = 'hidden';
 		this.formatContainer.style.visibility = 'hidden';
+		this.calcContainer.style.visibility = 'hidden';
 		this.hsplit.style.display = 'none';
 		this.sidebarContainer.style.display = 'none';
 		this.sidebarFooterContainer.style.display = 'none';
@@ -6077,10 +6089,30 @@ App.prototype.updateHeader = function()
 		this.toggleFormatElement.style.backgroundPosition = '50% 50%';
 		this.toggleFormatElement.style.backgroundRepeat = 'no-repeat';
 		this.toolbarContainer.appendChild(this.toggleFormatElement);
+
+		/**
+		 * Adds calc panel toggle.
+		 */
+		this.toggleCalcElement = document.createElement('a');
+		this.toggleCalcElement.setAttribute('title', mxResources.get('calcPanel') + ' (' + Editor.ctrlKey + '+Shift+C)');
+		this.toggleCalcElement.style.position = 'absolute';
+		this.toggleCalcElement.style.display = 'inline-block';
+		this.toggleCalcElement.style.top = (uiTheme == 'atlas') ? '8px' : '6px';
+		this.toggleCalcElement.style.right = (uiTheme != 'atlas' && urlParams['embed'] != '1') ? '46px' : '26px';
+		this.toggleCalcElement.style.padding = '2px';
+		this.toggleCalcElement.style.fontSize = '14px';
+		this.toggleCalcElement.className = (uiTheme != 'atlas') ? 'geButton' : '';
+		this.toggleCalcElement.style.width = '16px';
+		this.toggleCalcElement.style.height = '16px';
+		this.toggleCalcElement.style.backgroundPosition = '50% 50%';
+		this.toggleCalcElement.style.backgroundRepeat = 'no-repeat';
+		this.toolbarContainer.appendChild(this.toggleCalcElement);
 		
 		if (uiTheme == 'dark')
 		{
 			this.toggleFormatElement.style.filter = 'invert(100%)';
+			this.toggleCalcElement.style.filter = 'invert(100%)';
+
 		}
 		
 		// Prevents focus
@@ -6111,12 +6143,40 @@ App.prototype.updateHeader = function()
 		this.addListener('formatWidthChanged', toggleFormatPanel);
 		toggleFormatPanel();
 
+		// Prevents focus
+	    mxEvent.addListener(this.toggleCalcElement, (mxClient.IS_POINTER) ? 'pointerdown' : 'mousedown',
+        	mxUtils.bind(this, function(evt)
+    	{
+			evt.preventDefault();
+		}));
+		
+		mxEvent.addListener(this.toggleCalcElement, 'click', mxUtils.bind(this, function(evt)
+		{
+			this.actions.get('calcPanel').funct();
+			mxEvent.consume(evt);
+		}));
+
+		var toggleCalcPanel = mxUtils.bind(this, function()
+		{
+			if (this.calcWidth > 0)
+			{
+				this.toggleCalcElement.style.backgroundImage = 'url(\'' + this.calcShowImage + '\')';
+			}
+			else
+			{
+				this.toggleCalcElement.style.backgroundImage = 'url(\'' + this.calcHideImage + '\')';
+			}
+		});
+
+		this.addListener('calcWidthChanged', toggleCalcPanel);
+		toggleCalcPanel();
+
 		this.fullscreenElement = document.createElement('a');
 		this.fullscreenElement.setAttribute('title', mxResources.get('fullscreen'));
 		this.fullscreenElement.style.position = 'absolute';
 		this.fullscreenElement.style.display = 'inline-block';
 		this.fullscreenElement.style.top = (uiTheme == 'atlas') ? '8px' : '6px';
-		this.fullscreenElement.style.right = (uiTheme != 'atlas' && urlParams['embed'] != '1') ? '50px' : '30px';
+		this.fullscreenElement.style.right = (uiTheme != 'atlas' && urlParams['embed'] != '1') ? '66px' : '46px';
 		this.fullscreenElement.style.padding = '2px';
 		this.fullscreenElement.style.fontSize = '14px';
 		this.fullscreenElement.className = (uiTheme != 'atlas') ? 'geButton' : '';
@@ -6164,6 +6224,7 @@ App.prototype.updateHeader = function()
 			
 			this.hsplitPosition = (visible) ? initialPosition : 0;
 			this.toggleFormatPanel(visible);
+			this.toggleCalcPanel(visible);
 			this.fullscreenMode = !visible;
 			mxEvent.consume(evt);
 		}));

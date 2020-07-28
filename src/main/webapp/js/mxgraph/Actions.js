@@ -1349,12 +1349,21 @@ Actions.prototype.init = function()
 	}), null, null, Editor.ctrlKey + '+Shift+L');
 	action.setToggleAction(true);
 	action.setSelectedCallback(mxUtils.bind(this, function() { return this.layersWindow != null && this.layersWindow.window.isVisible(); }));
+
 	action = this.addAction('formatPanel', mxUtils.bind(this, function()
 	{
 		ui.toggleFormatPanel();
 	}), null, null, Editor.ctrlKey + '+Shift+P');
 	action.setToggleAction(true);
 	action.setSelectedCallback(mxUtils.bind(this, function() { return ui.formatWidth > 0; }));
+
+	action = this.addAction('calcPanel', mxUtils.bind(this, function()
+	{
+		ui.toggleCalcPanel();
+	}), null, null, Editor.ctrlKey + '+Shift+C');
+	action.setToggleAction(true);
+	action.setSelectedCallback(mxUtils.bind(this, function() { return ui.calcWidth > 0; }));
+	
 	action = this.addAction('outline', mxUtils.bind(this, function()
 	{
 		if (this.outlineWindow == null)

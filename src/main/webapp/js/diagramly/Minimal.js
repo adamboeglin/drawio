@@ -167,6 +167,38 @@ EditorUi.initMinimalTheme = function()
         }
 	};
 
+	function toggleCalc(ui, visible)
+	{
+		var graph = ui.editor.graph;
+	    graph.popupMenuHandler.hideMenu();
+	    
+	    if (ui.calcWindow == null)
+	    {
+	        ui.calcWindow = new WrapperWindow(ui, mxResources.get('calc'),
+	           Math.max(20, ui.diagramContainer.clientWidth - 480 - 12), 56,
+	           240, Math.min(566, graph.container.clientHeight - 10), function(container)
+	        {
+	            var calc = ui.createCalc(container);
+	            calc.init();
+	            
+	            return calc;
+	        });
+	        
+	        ui.calcWindow.window.minimumSize = new mxRectangle(0, 0, 480, 80);
+	        ui.calcWindow.window.setVisible(true);
+	    }
+	    else
+	    {
+	        ui.calcWindow.window.setVisible((visible != null) ?
+	        	visible : !ui.calcWindow.window.isVisible());
+	    }
+
+        if (ui.calcWindow.window.isVisible())
+        {
+            ui.calcWindow.window.fit();
+        }
+	};
+
 	function toggleShapes(ui, visible)
 	{
 		var graph = ui.editor.graph;
@@ -587,7 +619,21 @@ EditorUi.initMinimalTheme = function()
         {
         	toggleFormat(this);
         }
-    };
+	};
+	
+	// Overridden to toggle window instead
+	EditorUi.prototype.toggleCalcPanel = function(visible)
+	{
+		if (this.calcWindow != null)
+		{
+			this.calcWindow.window.setVisible((visible != null) ?
+				visible : !this.calcWindow.window.isVisible());
+		}
+		else
+		{
+			toggleCalc(this);
+		}
+	};
 
     DiagramFormatPanel.prototype.isMathOptionVisible = function()
     {
@@ -610,6 +656,13 @@ EditorUi.initMinimalTheme = function()
         	this.formatWindow.window.setVisible(false);
         	this.formatWindow.window.destroy();
         	this.formatWindow = null;
+		}
+		
+        if (this.calcWindow != null)
+        {
+        	this.calcWindow.window.setVisible(false);
+        	this.calcWindow.window.destroy();
+        	this.calcWindow = null;
         }
 
         if (this.actions.outlineWindow != null)
@@ -1016,6 +1069,11 @@ EditorUi.initMinimalTheme = function()
 		if (iw >= 1000)
 		{
 			toggleFormat(this, true);
+		}
+
+		if (iw >= 1000)
+		{
+			toggleCalc(this, true);
 		}
         
 		// Needed for creating elements in Format panel
@@ -1475,6 +1533,11 @@ EditorUi.initMinimalTheme = function()
             if (ui.formatWindow != null)
             {
             	ui.formatWindow.window.fit();
+			}
+			
+			if (ui.calcWindow != null)
+            {
+            	ui.calcWindow.window.fit();
             }
 
             if (ui.actions.outlineWindow != null)

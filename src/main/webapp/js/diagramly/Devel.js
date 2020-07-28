@@ -73,6 +73,7 @@ mxscript(geBasePath +'/EditorUi.js');
 mxscript(geBasePath +'/Sidebar.js');
 mxscript(geBasePath +'/Graph.js');
 mxscript(geBasePath +'/Format.js');
+mxscript(geBasePath +'/Calc.js');
 mxscript(geBasePath +'/Shapes.js');
 mxscript(geBasePath +'/Actions.js');
 mxscript(geBasePath +'/Menus.js');

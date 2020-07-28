@@ -162,6 +162,14 @@ var mxSettings =
 	{
 		mxSettings.settings.formatWidth = formatWidth;
 	},
+	getCalcWidth: function()
+	{
+		return parseInt(mxSettings.settings.calcWidth);
+	},
+	setCalcWidth: function(calcWidth)
+	{
+		mxSettings.settings.calcWidth = calcWidth;
+	},
 	isCreateTarget: function()
 	{
 		return mxSettings.settings.createTarget;

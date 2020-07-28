@@ -321,6 +321,7 @@ fontSize=Font Size
 forbidden=You are not authorized to access this file
 format=Format
 formatPanel=Format Panel
+calcPanel=Pricing Calculator
 formatted=Formatted
 formattedText=Formatted Text
 formatPng=PNG

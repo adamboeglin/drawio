@@ -93,8 +93,8 @@ window.DRAWIO_CONFIG = {"css": ".geMenubarContainer { background-color: #000000 
                             "toolbarStyle": "inline"
                         },
                         "ui": "kennedy",
-                        "plugins": ['/plugins/azure-diagrams.js',
-                              '/plugins/azure-sidebar.js'],
+                        "plugins": ['./plugins/azure-diagrams.js',
+                              './plugins/azure-sidebar.js'],
                         "pv": false,
                         "local": "1",
                         "db": "0",

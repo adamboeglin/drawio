@@ -443,6 +443,11 @@
 	EditorUi.prototype.formatEnabled = urlParams['format'] != '0';
 
 	/**
+	 * Restores app defaults for UI
+	 */
+	EditorUi.prototype.calcEnabled = urlParams['calc'] != '0';
+
+	/**
 	 * Whether template action should be shown in insert menu.
 	 */
 	EditorUi.prototype.insertTemplateEnabled = true;
@@ -9687,6 +9692,13 @@
 				mxSettings.setFormatWidth(this.formatWidth);
 				mxSettings.save();
 			});
+
+			// Saves app defaults for UI
+			this.addListener('calcWidthChanged', function()
+			{
+				mxSettings.setCalcWidth(this.calcWidth);
+				mxSettings.save();
+			});
 		}
 	};
 	
@@ -10577,6 +10589,7 @@
 	{
 		this.diagramContainer.style.visibility = (enabled) ? '' : 'hidden';
 		this.formatContainer.style.visibility = (enabled) ? '' : 'hidden';
+		this.calcContainer.style.visibility = (enabled) ? '' : 'hidden';
 		this.sidebarFooterContainer.style.display = (enabled) ? '' : 'none';
 		this.sidebarContainer.style.display = (enabled) ? '' : 'none';
 		this.hsplit.style.display = (enabled) ? '' : 'none';

@@ -82,6 +82,8 @@ EditorUi = function(editor, container, lightbox)
 			this.sidebarContainer.onmousedown = textEditing;
 			this.formatContainer.onselectstart = textEditing;
 			this.formatContainer.onmousedown = textEditing;
+			this.calcContainer.onselectstart = textEditing;
+			this.calcContainer.onmousedown = textEditing;
 			this.footerContainer.onselectstart = textEditing;
 			this.footerContainer.onmousedown = textEditing;
 			
@@ -1010,9 +1012,19 @@ EditorUi.prototype.menubarHeight = 30;
 EditorUi.prototype.formatEnabled = true;
 
 /**
+ * Specifies the width of the calculator panel should be enabled. Default is true.
+ */
+EditorUi.prototype.calcEnabled = true;
+
+/**
  * Specifies the width of the format panel. Default is 240.
  */
 EditorUi.prototype.formatWidth = 240;
+
+/**
+ * Specifies the width of the calculator panel. Default is 240.
+ */
+EditorUi.prototype.calcWidth = 480;
 
 /**
  * Specifies the height of the toolbar. Default is 38.
@@ -1131,6 +1143,11 @@ EditorUi.prototype.init = function()
 		if (this.format != null)
 		{
 			this.format.init();
+		}
+
+		if (this.calc != null)
+		{
+			this.calc.init();
 		}
 	}
 };
@@ -2505,6 +2522,23 @@ EditorUi.prototype.toggleFormatPanel = function(visible)
 };
 
 /**
+ * 
+ */
+EditorUi.prototype.toggleCalcPanel = function(visible)
+{
+	visible = (visible != null) ? visible : this.calcWidth == 0;
+	
+	if (this.calc != null)
+	{
+		this.calcWidth = (visible) ? 480 : 0;
+		this.calcContainer.style.display = (visible) ? '' : 'none';
+		this.refresh();
+		this.calc.refresh();
+		this.fireEvent(new mxEventObject('calcWidthChanged'));
+	}
+};
+
+/**
  * Adds support for placeholders in labels.
  */
 EditorUi.prototype.lightboxFit = function(maxHeight)
@@ -3309,11 +3343,16 @@ EditorUi.prototype.refresh = function(sizeDidChange)
 	}
 	
 	var fw = (this.format != null) ? this.formatWidth : 0;
+	var cw = (this.calc != null) ? this.calcWidth : 0;
 	this.sidebarContainer.style.top = tmp + 'px';
 	this.sidebarContainer.style.width = effHsplitPosition + 'px';
 	this.formatContainer.style.top = tmp + 'px';
 	this.formatContainer.style.width = fw + 'px';
 	this.formatContainer.style.display = (this.format != null) ? '' : 'none';
+	this.calcContainer.style.right = fw + 'px';
+	this.calcContainer.style.top = tmp + 'px';
+	this.calcContainer.style.width = cw + 'px';
+	this.calcContainer.style.display = (this.calc != null) ? '' : 'none';
 	
 	var diagContOffset = this.getDiagramContainerOffset();
 	var contLeft = (this.hsplit.parentNode != null) ? (effHsplitPosition + this.splitSize) : 0;
@@ -3337,7 +3376,8 @@ EditorUi.prototype.refresh = function(sizeDidChange)
 		var sidebarHeight = Math.max(0, h - this.footerHeight - this.menubarHeight - this.toolbarHeight);
 		this.sidebarContainer.style.height = (sidebarHeight - sidebarFooterHeight) + 'px';
 		this.formatContainer.style.height = sidebarHeight + 'px';
-		this.diagramContainer.style.width = (this.hsplit.parentNode != null) ? Math.max(0, w - effHsplitPosition - this.splitSize - fw) + 'px' : w + 'px';
+		this.calcContainer.style.height = sidebarHeight + 'px';
+		this.diagramContainer.style.width = (this.hsplit.parentNode != null) ? Math.max(0, w - effHsplitPosition - this.splitSize - (fw + cw)) + 'px' : (w) + 'px';
 		this.footerContainer.style.width = this.menubarContainer.style.width;
 		var diagramHeight = Math.max(0, h - this.footerHeight - this.menubarHeight - this.toolbarHeight);
 		
@@ -3358,7 +3398,7 @@ EditorUi.prototype.refresh = function(sizeDidChange)
 			this.footerContainer.style.bottom = off + 'px';
 		}
 		
-		this.diagramContainer.style.right = fw + 'px';
+		this.diagramContainer.style.right = (fw + cw) + 'px';
 		var th = 0;
 		
 		if (this.tabContainer != null)
@@ -3370,6 +3410,7 @@ EditorUi.prototype.refresh = function(sizeDidChange)
 		
 		this.sidebarContainer.style.bottom = (this.footerHeight + sidebarFooterHeight + off) + 'px';
 		this.formatContainer.style.bottom = (this.footerHeight + off) + 'px';
+		this.calcContainer.style.bottom = (this.footerHeight + off) + 'px';
 		this.diagramContainer.style.bottom = (this.footerHeight + off + th) + 'px';
 	}
 	
@@ -3395,6 +3436,7 @@ EditorUi.prototype.createDivs = function()
 	this.menubarContainer = this.createDiv('geMenubarContainer');
 	this.toolbarContainer = this.createDiv('geToolbarContainer');
 	this.sidebarContainer = this.createDiv('geSidebarContainer');
+	this.calcContainer = this.createDiv('geSidebarContainer geCalcContainer');
 	this.formatContainer = this.createDiv('geSidebarContainer geFormatContainer');
 	this.diagramContainer = this.createDiv('geDiagramContainer');
 	this.footerContainer = this.createDiv('geFooterContainer');
@@ -3410,7 +3452,9 @@ EditorUi.prototype.createDivs = function()
 	this.sidebarContainer.style.left = '0px';
 	this.formatContainer.style.right = '0px';
 	this.formatContainer.style.zIndex = '1';
-	this.diagramContainer.style.right = ((this.format != null) ? this.formatWidth : 0) + 'px';
+	this.calcContainer.style.right = '0px';
+	this.calcContainer.style.zIndex = '1';
+	this.diagramContainer.style.right = ((this.format != null) ? (this.formatWidth + this.calcWidth) : 0) + 'px';
 	this.footerContainer.style.left = '0px';
 	this.footerContainer.style.right = '0px';
 	this.footerContainer.style.bottom = '0px';
@@ -3486,6 +3530,14 @@ EditorUi.prototype.createUi = function()
 	if (this.format != null)
 	{
 		this.container.appendChild(this.formatContainer);
+	}
+
+	// Creates the calculator sidebar
+	this.calc = (this.editor.chromeless || !this.calcEnabled) ? null : this.createCalc(this.calcContainer);
+
+	if (this.calc != null)
+	{
+		this.container.appendChild(this.calcContainer);
 	}
 	
 	// Creates the footer
@@ -3578,6 +3630,15 @@ EditorUi.prototype.createSidebar = function(container)
 EditorUi.prototype.createFormat = function(container)
 {
 	return new Format(this, container);
+};
+
+/**
+ * Creates a new sidebar for the given container.
+ */
+EditorUi.prototype.createCalc = function(container)
+{
+	console.log("Creating Calc");
+	return new Calc(this, container);
 };
 
 /**
@@ -4741,9 +4802,9 @@ EditorUi.prototype.destroy = function()
 	}
 	
 	var c = [this.menubarContainer, this.toolbarContainer, this.sidebarContainer,
-	         this.formatContainer, this.diagramContainer, this.footerContainer,
-	         this.chromelessToolbar, this.hsplit, this.sidebarFooterContainer,
-	         this.layersDialog];
+			 this.formatContainer, this.calcContainer, this.diagramContainer, 
+			 this.footerContainer, this.chromelessToolbar, this.hsplit, 
+			 this.sidebarFooterContainer, this.layersDialog];
 	
 	for (var i = 0; i < c.length; i++)
 	{
