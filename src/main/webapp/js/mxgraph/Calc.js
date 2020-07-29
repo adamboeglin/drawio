@@ -37,16 +37,36 @@ Calc.prototype.init = function()
 	var editor = ui.editor;
 	var graph = editor.graph;
 	
+	function notifyCalculator(item, index) {
+		var calculatorFrame = document.getElementById("calculatorFrame").contentWindow;
+
+		service = item.style.match(/image=.*\/([a-z\-]*)\.svg/)[1];
+		var data = {};
+		data['action'] = "add";
+		data['service'] = service;
+		calculatorFrame.postMessage(data, "*");
+	} 
+
 	this.update = mxUtils.bind(this, function(sender, evt)
 	{
 		// this.clearSelectionState();
-		this.refresh();
+		console.log("Got Event: ");
+		console.log(evt);
+
+				// Look for the service name in the item that was added to the canvas
+		if (evt.properties.hasOwnProperty('cells')) {
+			evt.properties.cells.forEach(notifyCalculator);
+		}
+
+		//this.refresh();
 	});
-	
-	graph.getSelectionModel().addListener(mxEvent.CHANGE, this.update);
-	graph.addListener(mxEvent.EDITING_STARTED, this.update);
-	graph.addListener(mxEvent.EDITING_STOPPED, this.update);
-	graph.getModel().addListener(mxEvent.CHANGE, this.update);
+
+	graph.addListener(mxEvent.CELLS_ADDED, this.update);
+	graph.addListener(mxEvent.CELLS_REMOVED, this.update);
+	// graph.getSelectionModel().addListener(mxEvent.CHANGE, this.update);
+	// graph.addListener(mxEvent.EDITING_STARTED, this.update);
+	// graph.addListener(mxEvent.EDITING_STOPPED, this.update);
+	// graph.getModel().addListener(mxEvent.CHANGE, this.update);
 	graph.addListener(mxEvent.ROOT, mxUtils.bind(this, function()
 	{
 		this.refresh();
